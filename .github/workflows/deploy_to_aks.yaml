@@ -1,0 +1,30 @@
+on: [push]
+
+# Environment variables available to all jobs and steps in this workflow
+env:
+  CLUSTER_NAME: contoso-video
+  CLUSTER_RESOURCE_GROUP: mslearn-gh-pipelines-8235
+  NAMESPACE: default
+  
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@main
+    
+       
+    # Set the target Azure Kubernetes Service (AKS) cluster. 
+    - uses: azure/aks-set-context@v1
+      with:
+        creds: '${{ secrets.AZURE_CREDENTIALS }}'
+        cluster-name: ${{ env.CLUSTER_NAME }}
+        resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
+    
+    # Create namespace if doesn't exist
+   # - run: |
+     #   kubectl create namespace ${{ env.NAMESPACE }} --dry-run=client -o json | kubectl apply -f -
+    - run: |
+        kubectl apply-f https://github.com/erezbatish/azure-voting-app-redis/blob/master/azure-vote-all-in-one-redis.yaml
+        
+    
