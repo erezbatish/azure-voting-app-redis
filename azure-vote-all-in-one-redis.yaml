@@ -74,8 +74,7 @@ kind: Service
 metadata:
   name: azure-vote-front
 spec:
-  type: LoadBalancer
-  ports:
+    ports:
   - port: 80
   selector:
     app: azure-vote-front
