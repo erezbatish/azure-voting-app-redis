@@ -26,5 +26,6 @@ jobs:
      #   kubectl create namespace ${{ env.NAMESPACE }} --dry-run=client -o json | kubectl apply -f -
     - run: |
         kubectl apply -f https://raw.githubusercontent.com/erezbatish/azure-voting-app-redis/master/azure-vote-all-in-one-redis.yaml
+        kubectk apply -f https://raw.githubusercontent.com/erezbatish/azure-voting-app-redis/master/ingress.yaml
         
     
