@@ -74,7 +74,7 @@ kind: Service
 metadata:
   name: azure-vote-front
 spec:
-    ports:
-    - port: 80
-    selector:
-      app: azure-vote-front
+  ports:
+  - port: 80
+  selector:
+    app: azure-vote-front
